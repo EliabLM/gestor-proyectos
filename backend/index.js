@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 
 // Importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/auth', require('./routes/auth'));
 
 // Arrancar el servidor
 app.listen(PORT, () => {
