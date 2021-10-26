@@ -1,10 +1,15 @@
 import React, { Fragment, useContext } from 'react';
 import Tarea from './Tarea';
 import proyectoContext from '../../Context/proyectos/proyectoContext';
+import tareaContext from '../../Context/tareas/tareaContext';
 
 const ListadoTareas = () => {
+	// Context
 	const proyectosContext = useContext(proyectoContext);
 	const { proyecto, eliminarProyecto } = proyectosContext;
+
+	const tareasContext = useContext(tareaContext);
+	const { tareasproyecto } = tareasContext;
 
 	// Si no hay proyecto seleccionado
 	if (!proyecto) return <h2>Selecciona un proyecto</h2>;
@@ -12,18 +17,16 @@ const ListadoTareas = () => {
 	// Array destructuring para extraer el proyecto actual
 	const [proyectoActual] = proyecto;
 
-	const tareasProyecto = [];
-
 	return (
 		<Fragment>
 			<h2>Proyecto: {proyectoActual.nombre}</h2>
 			<ul>
-				{tareasProyecto.length === 0 ? (
+				{tareasproyecto.length === 0 ? (
 					<li className="tarea">
 						<p>No hay tareas</p>
 					</li>
 				) : (
-					tareasProyecto.map((tarea) => <Tarea tarea={tarea} />)
+					tareasproyecto.map((tarea) => <Tarea tarea={tarea} />)
 				)}
 			</ul>
 			<button
