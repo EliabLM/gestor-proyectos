@@ -10,7 +10,12 @@ const Tarea = ({ tarea }) => {
 	const [proyectoAtual] = proyecto;
 
 	const tareasContext = useContext(tareaContext);
-	const { eliminarTarea, obtenerTareas, cambiarEstadoTarea } = tareasContext;
+	const {
+		eliminarTarea,
+		obtenerTareas,
+		cambiarEstadoTarea,
+		guardarTareaActual,
+	} = tareasContext;
 
 	// Funcion para eliminar tarea
 	const tareaEliminar = (id) => {
@@ -26,6 +31,11 @@ const Tarea = ({ tarea }) => {
 			tarea.estado = true;
 		}
 		cambiarEstadoTarea(tarea);
+	};
+
+	// Agrega una tarea actual para editarla
+	const seleccionarTarea = (tarea) => {
+		guardarTareaActual(tarea);
 	};
 
 	return (
@@ -51,7 +61,11 @@ const Tarea = ({ tarea }) => {
 				)}
 			</div>
 			<div className="acciones">
-				<button className="btn btn-primario" type="button">
+				<button
+					className="btn btn-primario"
+					type="button"
+					onClick={() => seleccionarTarea(tarea)}
+				>
 					Editar
 				</button>
 				<button
