@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import Tarea from './Tarea';
 import proyectoContext from '../../Context/proyectos/proyectoContext';
 import tareaContext from '../../Context/tareas/tareaContext';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const ListadoTareas = () => {
 	// Context
@@ -26,7 +27,13 @@ const ListadoTareas = () => {
 						<p>No hay tareas</p>
 					</li>
 				) : (
-					tareasproyecto.map((tarea) => <Tarea key={tarea.id} tarea={tarea} />)
+					<TransitionGroup>
+						{tareasproyecto.map((tarea) => (
+							<CSSTransition classNames="tarea" key={tarea.id} timeout={200}>
+								<Tarea tarea={tarea} />
+							</CSSTransition>
+						))}
+					</TransitionGroup>
 				)}
 			</ul>
 			<button
