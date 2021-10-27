@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Proyecto from './Proyecto';
 import proyectoContext from '../../Context/proyectos/proyectoContext';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const ListadoProyectos = () => {
 	// Extraer proyectos desde el context
@@ -17,9 +18,13 @@ const ListadoProyectos = () => {
 
 	return (
 		<ul className="listado-proyectos">
-			{proyectos.map((proyecto) => (
-				<Proyecto key={proyecto.id} proyecto={proyecto} />
-			))}
+			<TransitionGroup>
+				{proyectos.map((proyecto) => (
+					<CSSTransition classNames="proyecto" key={proyecto.id} timeout={200}>
+						<Proyecto proyecto={proyecto} />
+					</CSSTransition>
+				))}
+			</TransitionGroup>
 		</ul>
 	);
 };
