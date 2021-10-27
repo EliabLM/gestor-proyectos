@@ -11,6 +11,7 @@ const ListadoProyectos = () => {
 	// obtener proyectos cuando caarga el componente
 	useEffect(() => {
 		obtenerProyectos();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// Validar si proyectos esta vacio
