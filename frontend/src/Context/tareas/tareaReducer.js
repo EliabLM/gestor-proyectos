@@ -5,6 +5,7 @@ import {
 	ELIMINAR_TAREA,
 	ESTADO_TAREA,
 	TAREA_ACTUAL,
+	ACTUALIZAR_TAREA,
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -34,9 +35,10 @@ export default (state, action) => {
 				tareas: state.tareas.filter((tarea) => tarea.id !== action.payload),
 			};
 		case ESTADO_TAREA:
+		case ACTUALIZAR_TAREA:
 			return {
 				...state,
-				tareas: state.tareasproyecto.map((tarea) =>
+				tareas: state.tareas.map((tarea) =>
 					tarea.id === action.payload.id ? action.payload : tarea
 				),
 			};
