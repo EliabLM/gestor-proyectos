@@ -2,7 +2,12 @@ const Proyecto = require('../models/Proyecto');
 
 exports.crearProyecto = async (req, res) => {
 	try {
+		// Crear un nuevo proyecto
 		const proyecto = new Proyecto(req.body);
+
+		// Guardar el creador via JWT
+		proyecto.creador = req.usuario.id;
+
 		proyecto.save();
 		res.json(proyecto);
 	} catch (error) {
