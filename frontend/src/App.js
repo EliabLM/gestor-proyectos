@@ -7,18 +7,21 @@ import Proyectos from './components/proyectos/Proyectos';
 
 import ProyectoState from './Context/proyectos/proyectoState';
 import TareaState from './Context/tareas/tareaState';
+import AlertaState from './Context/alertas/alertaState';
 
 function App() {
 	return (
 		<ProyectoState>
 			<TareaState>
-				<Router>
-					<Switch>
-						<Route exact path="/" component={Login} />
-						<Route exact path="/nueva-cuenta" component={NuevaCuenta} />
-						<Route exact path="/proyectos" component={Proyectos} />
-					</Switch>
-				</Router>
+				<AlertaState>
+					<Router>
+						<Switch>
+							<Route exact path="/" component={Login} />
+							<Route exact path="/nueva-cuenta" component={NuevaCuenta} />
+							<Route exact path="/proyectos" component={Proyectos} />
+						</Switch>
+					</Router>
+				</AlertaState>
 			</TareaState>
 		</ProyectoState>
 	);
