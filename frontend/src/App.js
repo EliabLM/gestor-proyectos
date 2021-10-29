@@ -11,6 +11,8 @@ import AlertaState from './Context/alertas/alertaState';
 import AuthState from './Context/autenticacion/authState';
 
 function App() {
+	console.log('backend url: ', process.env.REACT_APP_BACKEND_URL);
+
 	return (
 		<ProyectoState>
 			<TareaState>
