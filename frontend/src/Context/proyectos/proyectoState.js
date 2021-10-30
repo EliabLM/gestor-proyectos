@@ -15,12 +15,6 @@ import {
 } from '../../types';
 
 const ProyectoState = (props) => {
-  const proyectos = [
-    { id: 1, nombre: 'Tienda virtual' },
-    { id: 2, nombre: 'Intranet' },
-    { id: 3, nombre: 'Diseño de sitios web' },
-  ];
-
   const initialState = {
     proyectos: [],
     formulario: false,
@@ -39,11 +33,17 @@ const ProyectoState = (props) => {
   };
 
   // Obtener proyectos
-  const obtenerProyectos = () => {
-    dispatch({
-      type: OBTENER_PROYECTOS,
-      payload: proyectos,
-    });
+  const obtenerProyectos = async () => {
+    try {
+      const resultado = await clienteAxios.get('/api/proyectos');
+
+      dispatch({
+        type: OBTENER_PROYECTOS,
+        payload: resultado.data.proyectos,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // Agregar nuevo proyecto
