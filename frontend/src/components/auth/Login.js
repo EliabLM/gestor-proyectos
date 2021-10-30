@@ -11,11 +11,11 @@ const Login = (props) => {
   const authContext = useContext(AuthContext);
   const { mensaje, autenticado, iniciarSesion } = authContext;
 
-  // Registro duplicado
+  // Cuando el usuario no existe o password incorrecto
   useEffect(() => {
-    // if (autenticado) {
-    //   props.history.push('/proyectos');
-    // }
+    if (autenticado) {
+      props.history.push('/proyectos');
+    }
 
     if (mensaje) {
       mostrarAlerta(mensaje.msg, mensaje.categoria);
