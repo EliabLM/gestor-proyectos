@@ -9,27 +9,32 @@ import ProyectoState from './Context/proyectos/proyectoState';
 import TareaState from './Context/tareas/tareaState';
 import AlertaState from './Context/alertas/alertaState';
 import AuthState from './Context/autenticacion/authState';
+import tokenAuth from './config/tokenAuth';
+
+// Revisar si tenemos un token
+const token = localStorage.getItem('token');
+if (token) {
+  tokenAuth(token);
+}
 
 function App() {
-	console.log('backend url: ', process.env.REACT_APP_BACKEND_URL);
-
-	return (
-		<ProyectoState>
-			<TareaState>
-				<AlertaState>
-					<AuthState>
-						<Router>
-							<Switch>
-								<Route exact path="/" component={Login} />
-								<Route exact path="/nueva-cuenta" component={NuevaCuenta} />
-								<Route exact path="/proyectos" component={Proyectos} />
-							</Switch>
-						</Router>
-					</AuthState>
-				</AlertaState>
-			</TareaState>
-		</ProyectoState>
-	);
+  return (
+    <ProyectoState>
+      <TareaState>
+        <AlertaState>
+          <AuthState>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
+                <Route exact path="/proyectos" component={Proyectos} />
+              </Switch>
+            </Router>
+          </AuthState>
+        </AlertaState>
+      </TareaState>
+    </ProyectoState>
+  );
 }
 
 export default App;
