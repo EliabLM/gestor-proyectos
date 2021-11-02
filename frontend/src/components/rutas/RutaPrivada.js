@@ -8,7 +8,7 @@ const RutaPrivada = ({ component: Component, ...props }) => {
 
   useEffect(() => {
     usuarioAutenticado();
-  }, []);
+  }, [usuarioAutenticado]);
 
   return (
     <Route
